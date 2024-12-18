@@ -26,7 +26,6 @@ public class MultiThreadedFileProcessing {
                         .toList();
 
                 for (Path file : files) {
-                    // Submit a Callable task for each file
                     futures.add(executorService.submit(new WordCountTask(file)));
                 }
 

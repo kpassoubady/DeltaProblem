@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
+import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
@@ -21,12 +21,12 @@ public class MultiThreadUsingVirtualThread {
         try (ExecutorService executorService = newVirtualThreadPerTaskExecutor()) {
             try (Stream<Path> fileNames = Files.list(Paths.get(directoryPath))) {
 
-                List<Future<FileWordCount>> futures = fileNames
+                var futures = fileNames
                         .filter(path -> path.toString().endsWith(".txt"))
                         .map(file -> executorService.submit(new WordCountTask(file)))
                         .toList();
 
-                List<FileWordCount> results = new java.util.ArrayList<>();
+                var results = new ArrayList<FileWordCount>();
                 for (Future<FileWordCount> future : futures) {
                     results.add(future.get());
                 }
