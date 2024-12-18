@@ -12,7 +12,7 @@ import java.util.stream.Stream;
 
 import static java.util.concurrent.Executors.newVirtualThreadPerTaskExecutor;
 
-//
+// Java 21+ features
 public class MultiThreadUsingVirtualThread {
 
     public static void main(String[] args) throws IOException, InterruptedException, ExecutionException {
